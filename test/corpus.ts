@@ -1,0 +1,55 @@
+// The measured corpus. Deterministic enumeration over explicit lists, never a
+// random sample: every number in section 2 of the specification is an exact
+// count over these two arrays, so a pseudo-random corpus would only ever
+// justify a floor.
+
+export const PATHS: readonly string[] = [
+  'src/index.ts',
+  'src/a/b/index.test.ts',
+  'index.test.ts',
+  'node_modules/foo/index.js',
+  'src/node_modules/foo/index.js',
+  'dist/main.js',
+  '.env',
+  '.env.local',
+  'src/.hidden/file.ts',
+  '.github/workflows/ci.yml',
+  'test/a.spec.js',
+  'packages/a/src/x.ts',
+  'docs/readme.md',
+  'a.min.js',
+  'types/x.d.ts',
+  'coverage/lcov.info',
+  'build/x/y.js',
+  'src/__tests__/a.ts',
+  'src/foo.tsx',
+  'a.log',
+];
+
+export const PATTERNS: readonly string[] = [
+  '**/*.test.ts',
+  '*.log',
+  'src/**',
+  'src/**/*',
+  'node_modules',
+  'node_modules/',
+  '/dist',
+  'dist/',
+  '**/node_modules/**',
+  '.*',
+  '**/.*',
+  '*',
+  '**',
+  'src/*.ts',
+  '**/*.{ts,tsx}',
+  'test/**/*.spec.js',
+  'coverage',
+  'build/**/*',
+  '**/__tests__/**',
+  '*.min.js',
+  'docs/**/*.md',
+  '.env*',
+  '**/*.d.ts',
+  'packages/*/src/**',
+  '**/*.ts',
+];
