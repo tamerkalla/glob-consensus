@@ -1,6 +1,6 @@
 {
   "name": "glob-consensus",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shows how git, TypeScript and the npm glob matchers each read the same pattern, and where they disagree.",
   "keywords": [
     "glob",
