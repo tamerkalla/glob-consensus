@@ -57,10 +57,18 @@ describe('the package manifest', () => {
     expect(pkg.repository.url).toContain('github.com/tamerkalla/glob-consensus');
   });
 
-  it('starts at the release gate version', () => {
-    // 0.0.0 is what makes the first push to main publish 0.1.0. Any other value
-    // here means the first push releases nothing.
-    expect(pkg.version).toBe('0.0.0');
+  it('carries a version the release ladder can act on', () => {
+    // 0.0.0 is the pre-release gate: it is what makes the first push to main
+    // publish 0.1.0, and it is true exactly once, before that push. Asserting
+    // it forever is what this test did first, and it turned a one-time state
+    // into a permanent claim that failed every release after the first.
+    //
+    // The invariant that actually holds for the life of the line is the one
+    // worth asserting: a well formed version below 1.0.0, since a major is
+    // never dispatched before 1.0.0 and a breaking change under 0.x is a
+    // minor. That still catches a hand-edited or malformed version, which is
+    // what this was guarding against.
+    expect(pkg.version).toMatch(/^0\.\d+\.\d+$/);
   });
 
   it('pins every runtime dependency exactly', () => {
