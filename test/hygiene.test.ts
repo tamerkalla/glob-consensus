@@ -69,6 +69,15 @@ describe('the package manifest', () => {
     }
   });
 
+  it('builds before it tests, because the suite exercises the built output', () => {
+    // Two tests run the built CLI and one packs a tarball whose files[] names
+    // dist, so a clean checkout with no dist fails six tests. The release
+    // workflow runs test before build, so the suite has to be self sufficient
+    // rather than relying on a build someone happened to run first.
+    expect(pkg.scripts.pretest).toBe('tsup');
+    expect(pkg.scripts.build).toBe('tsup');
+  });
+
   it('exposes both module formats and the CLI', () => {
     expect(pkg.exports['.'].import).toBe('./dist/index.js');
     expect(pkg.exports['.'].require).toBe('./dist/index.cjs');
